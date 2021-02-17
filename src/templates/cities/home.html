@@ -6,8 +6,20 @@
 <div class="row">
     <div class="col-md">
         {% for object in objects_list %}
-            <p>{{object.name}}</p>
+            <p>
+                <a href="{% url 'cities:detail' id=object.id %}">{{object.name}}</a>
+            </p>
         {% endfor %}
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md4">
+        <form action="" method="post"> {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
 {% endblock %}
