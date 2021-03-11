@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 class Train(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Train number')
-    travel_time = models.TimeField(verbose_name='Travel time')
+    travel_time = models.PositiveSmallIntegerField(verbose_name='Travel time')
     from_city = models.name = models.ForeignKey('cities.City', related_name='from_city_set',
                                                 on_delete=models.CASCADE,
                                                 verbose_name='From city'

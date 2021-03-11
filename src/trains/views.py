@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
 from trains.models import Train
+from trains.forms import TrainForm
 
 
 class TrainListView(ListView):
@@ -14,35 +15,35 @@ class TrainListView(ListView):
 
 
 
-# class TrainDetailView(DetailView):
-#     queryset = Train.objects.all()
-#     template_name = 'trains/detail.html'
+class TrainDetailView(DetailView):
+    queryset = Train.objects.all()
+    template_name = 'trains/detail.html'
 
-#     # def get_queryset(self):
-#     #     return get_object_or_404(Train, pk=self.kwargs.get('pk'))
-
-
-# class TrainCreateView(CreateView):
-#     model = Train
-#     form_class = TrainForm
-#     template_name = 'trains/create.html'
-#     success_url = reverse_lazy('trains:home')
-#     success_message = "Train was created successfully"
+    # def get_queryset(self):
+    #     return get_object_or_404(Train, pk=self.kwargs.get('pk'))
 
 
-# class TrainUpdateView(SuccessMessageMixin, UpdateView):
-#     model = Train
-#     form_class = TrainForm
-#     template_name = 'trains/update.html'
-#     success_url = reverse_lazy('trains:home')
-#     success_message = "Train was edited successfully"
+class TrainCreateView(CreateView):
+    model = Train
+    form_class = TrainForm
+    template_name = 'trains/create.html'
+    success_url = reverse_lazy('trains:home')
+    success_message = "Train was created successfully"
 
 
-# class TrainDeleteView(DeleteView):
-#     model = Train
-#     template_name = 'trains/delete.html'
-#     success_url = reverse_lazy('trains:home')
+class TrainUpdateView(SuccessMessageMixin, UpdateView):
+    model = Train
+    form_class = TrainForm
+    template_name = 'trains/update.html'
+    success_url = reverse_lazy('trains:home')
+    success_message = "Train was edited successfully"
 
-#     def get(self, request, *args, **kwargs):
-#         messages.error(request, 'Train deleted.')
-#         return self.post(request, *args, **kwargs)
+
+class TrainDeleteView(DeleteView):
+    model = Train
+    template_name = 'trains/delete.html'
+    success_url = reverse_lazy('trains:home')
+
+    def get(self, request, *args, **kwargs):
+        messages.error(request, 'Train deleted.')
+        return self.post(request, *args, **kwargs)
