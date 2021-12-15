@@ -4,12 +4,39 @@
 {% block content %}
     <h1>Cities List </h1>
     <div class="row">
-        <div class="col-md">
-            {% for city in object_list %}
-                <a href="{% url 'cities:city_detail' city.id %}">
-                    <p>{{ city.name }}</p>
-                </a>
-            {% endfor %}
+        <div class="col-md-8 mx-auto">
+            <table class="table table-striped">
+                {% for city in object_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'cities:city_detail' pk=city.id %}">
+                        <p>{{ city.name }}</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'cities:city_update' pk=city.id %}">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'cities:city_delete' pk=city.id %}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>   
+           
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form action="" method="post">
+                {% csrf_token %} 
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
         </div>
     </div>
 {% endblock %}
