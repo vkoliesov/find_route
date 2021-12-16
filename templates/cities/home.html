@@ -2,9 +2,9 @@
 {% block title %} Cities List {% endblock %}
 
 {% block content %}
-    <h1>Cities List </h1>
+    <h1 class="text-center">Cities List </h1>
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 mx-auto my-2">
             <table class="table table-striped">
                 {% for city in object_list %}
                 <tr>
@@ -30,13 +30,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <form action="" method="post">
-                {% csrf_token %} 
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-info">Submit</button>
-            </form>
-        </div>
-    </div>
+    {% include 'pagination.html' %}
+
+    {% include 'form.html' with action='add/' button='Submit' %}
+
 {% endblock %}

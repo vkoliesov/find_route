@@ -11,8 +11,9 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    {% include 'navbar.html' %}
+    {% include 'messages.html' %}
     <div class="container">
-        {% include 'navbar.html' %}
         {% block content %}{% endblock %}
     </div>
 
