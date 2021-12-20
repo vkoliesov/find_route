@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} Train {% endblock %}
+
+{% block content %}
+    <h1> Train </h1>
+    <div class="row">
+        <div class="col-md">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        <p>Number</p>
+                    </th>
+                    <th>
+                        <p>From</p>
+                    </th>
+                    <th>
+                        <p>To</p>
+                    </th>
+                    <th>
+                        <p>Travel Time</p>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <p>{{ train.name }}</p>
+                        </a>
+                    </td>
+                    <td>
+                        <p>{{ train.from_city }}</p>
+                    </td>
+                    <td>
+                        <p>{{ train.to_city }}</p>
+                    </td>
+                    <td>
+                        <p>{{ train.travel_time }}</p>
+                    </td>
+                </tr>
+            </table>   
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{% url 'trains:trains_list' %}">
+                <button type="button" class="btn btn-light">Back to the list</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

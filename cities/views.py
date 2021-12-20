@@ -53,4 +53,4 @@ class CityDeleteView(generic.DeleteView):
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super(CityDeleteView, self).delete(self, request, *args, **kwargs)
+        return super().delete(self, request, *args, **kwargs)
