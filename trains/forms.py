@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.widgets import Select
 
 from .models import Train
 from cities.models import City
@@ -16,11 +15,11 @@ class TrainForm(forms.ModelForm):
     }))
 
     from_city = forms.ModelChoiceField(label='From', queryset=City.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-control',
+        'class': 'form-control js-example-basic-single',
     }))
 
     to_city = forms.ModelChoiceField(label='To', queryset=City.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-control',
+        'class': 'form-control js-example-basic-single',
     }))
     
     class Meta:

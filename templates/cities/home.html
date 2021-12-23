@@ -32,6 +32,7 @@
 
     {% include 'pagination.html' %}
 
-    {% include 'form.html' with action='add/' button='Submit' %}
+    {% url 'cities:city_create' as city_create_url %}
+    {% include 'form.html' with action=city_create_url button='Submit' %}
 
 {% endblock %}
