@@ -15,8 +15,8 @@ def dfs_path(graph, start, goal):
 def get_graph(qs):
     graph = {}
     for q in qs:
-        graph.setdefault(q.from_city_id, set())
-        graph[q.from_city_id].add(q.to_city_id)
+        graph.setdefault(q.from_city.id, set())
+        graph[q.from_city.id].add(q.to_city.id)
     return graph
 
 def get_routes(request, form):
@@ -48,8 +48,8 @@ def get_routes(request, form):
     all_trains = {}
 
     for q in qs:
-        all_trains.setdefault((q.from_city_id, q.to_city_id), [])
-        all_trains[(q.from_city_id, q.to_city_id)].append(q)
+        all_trains.setdefault((q.from_city.id, q.to_city.id), [])
+        all_trains[(q.from_city.id, q.to_city.id)].append(q)
 
     for route in right_ways:
         tmp = {}
@@ -80,5 +80,5 @@ def get_routes(request, form):
                     sorted_routes.append(route)
 
     context['routes'] = sorted_routes
-    context['cities'] = {'from_city': from_city.name, 'to_city': to_city.name}
+    context['cities'] = {'from_city': from_city, 'to_city': to_city}
     return context

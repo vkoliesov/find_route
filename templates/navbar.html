@@ -2,10 +2,11 @@
 {% url 'cities:city_create' as city_create_url %}
 {% url 'trains:trains_list' as trains_list_url %}
 {% url 'trains:train_create' as train_create_url %}
+{% url 'routes:routes_list' as routes_list_url %}
 
 <nav class="navbar navbar-expand-lg navbar-light container" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Find Route</a>
+      <a class="navbar-brand" href="{% url 'routes:home' %}">Find Route</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,7 +19,7 @@
             <a class="nav-link {% if request.path == trains_list_url %} active {% endif %}" aria-current="page" href="{% url 'trains:trains_list' %}">Trains</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link {% if request.path == routes_list_url %} active {% endif %}" href="{% url 'routes:routes_list' %}">Routes</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle {% if request.path == city_create_url or request.path == train_create_url %} active {% endif %}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,7 +28,6 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="{% url 'cities:city_create' %}">New City</a></li>
               <li><a class="dropdown-item" href="{% url 'trains:train_create' %}">New Train</a></li>
-              <li><a class="dropdown-item" href="#">New Route</a></li>
             </ul>
           </li>
         </ul>
