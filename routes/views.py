@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render,redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from trains.models import Train
 from cities.models import City
@@ -90,3 +90,13 @@ class RouteDetailView(generic.DetailView):
 
     def get_object(self):
         return get_object_or_404(Route, pk=self.kwargs.get('pk'))
+
+
+class RouteDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Route
+    success_url = reverse_lazy('routes:home')
+    success_message = "Route was deleted successfully"
+
+    def get(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return self.post(request, *args, **kwargs)

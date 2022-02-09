@@ -22,6 +22,9 @@
                     <th>
                         <p>Trains list in route</p>
                     </th>
+                    <th>
+                        <p>&nbsp;</p>
+                    </th>
                 </tr>
                 <tr>
                     <td>
@@ -42,6 +45,13 @@
                         <p>{{ train }}, travel time {{ train.travel_time }}</p>
                         {% endfor %}
                     </td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="{% url 'routes:route_delete' pk=route.id %}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                    {% endif%} &nbsp;
                 </tr>
             </table>   
 

@@ -13,16 +13,25 @@
                         <p>{{ city.name }}</p>
                         </a>
                     </td>
-                    <td>
-                        <a href="{% url 'cities:city_update' pk=city.id %}">
-                            <button type="submit" class="btn btn-secondary">Edit</button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'cities:city_delete' pk=city.id %}">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </a>
-                    </td>
+                    {% if user.is_authenticated %}
+                        <td>
+                            <a href="{% url 'cities:city_update' pk=city.id %}">
+                                <button type="submit" class="btn btn-secondary">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'cities:city_delete' pk=city.id %}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </a>
+                        </td>
+                    {% else %}
+                        <td>
+                            <p>&nbsp;</p>
+                        </td>
+                        <td>
+                            <p>&nbsp;</p>
+                        </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>   
@@ -32,7 +41,9 @@
 
     {% include 'pagination.html' %}
 
+    {% if user.is_authenticated %}
     {% url 'cities:city_create' as city_create_url %}
     {% include 'form.html' with action=city_create_url button='Submit' %}
+    {% endif %}
 
 {% endblock %}

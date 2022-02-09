@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Train
 from .forms import TrainForm
@@ -20,7 +21,7 @@ class TrainDetailView(generic.DetailView):
         return get_object_or_404(Train, pk=self.kwargs.get('pk'))
 
 
-class TrainCreateView(SuccessMessageMixin, generic.CreateView):
+class TrainCreateView(SuccessMessageMixin, LoginRequiredMixin, generic.CreateView):
     model = Train
     form_class = TrainForm
     template_name = 'trains/create.html'
@@ -28,7 +29,7 @@ class TrainCreateView(SuccessMessageMixin, generic.CreateView):
     success_message = "Train was created successfully"
 
 
-class TrainUpdateView(SuccessMessageMixin, generic.UpdateView):
+class TrainUpdateView(SuccessMessageMixin, LoginRequiredMixin, generic.UpdateView):
     model = Train
     form_class = TrainForm
     template_name = 'trains/update.html'
@@ -36,7 +37,7 @@ class TrainUpdateView(SuccessMessageMixin, generic.UpdateView):
     success_message = "Train was updated successfully"
 
 
-class TrainDeleteView(generic.DeleteView):
+class TrainDeleteView(LoginRequiredMixin,generic.DeleteView):
     model = Train
     # form_class = TrainForm
     template_name = 'trains/delete.html'

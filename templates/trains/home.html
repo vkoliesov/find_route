@@ -42,6 +42,7 @@
                     <td>
                         <p>{{ train.travel_time }}</p>
                     </td>
+                    {% if user.is_authenticated %}
                     <td>
                         <a href="{% url 'trains:train_update' pk=train.id %}">
                             <button type="submit" class="btn btn-secondary">Edit</button>
@@ -52,6 +53,14 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </a>
                     </td>
+                    {% else %}
+                    <td>
+                        <p>&nbsp;</p>
+                    </td>
+                    <td>
+                        <p>&nbsp;</p>
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>   
@@ -60,7 +69,5 @@
     </div>
 
     {% include 'pagination.html' %}
-
-    {% include 'form.html' with action='add/' button='Submit' %}
 
 {% endblock %}
