@@ -1,1 +1,1 @@
-web: gunicorn travels.wsgi --log-file
+web: gunicorn travels.wsgi --log-file -
