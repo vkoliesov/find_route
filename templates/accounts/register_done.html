@@ -2,7 +2,7 @@
 {% block title %} Registration {% endblock %}
 
 {% block content %}
-    <h1>Welcome {{ new_user.username }}</h1>
+    <h1 class="text-center">Welcome {{ new_user.username }}</h1>
 
     <p>You have registered! Now you can <a href="{% url 'accounts:login' %}">Log in</a><p>
 

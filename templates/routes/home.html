@@ -2,7 +2,10 @@
 {% block title %} Find Route {% endblock %}
 
 {% block content %}
-    <h1> Find Route </h1>
+    <h1 class="text-center"> Find Route </h1>
+    {% url 'routes:find_routes' as action %}
+    {% include 'form.html' with button='Find' action=action %}
+    <br><br>
     <div class="row">
         <div class="col-md-8 mx-auto">
             {% if routes  %}
@@ -42,7 +45,6 @@
             {% endif %}
         </div>
     </div>
-    {% url 'routes:find_routes' as action %}
-    {% include 'form.html' with button='Find' action=action %}
+    
 
 {% endblock %} 
